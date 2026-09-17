@@ -1,19 +1,117 @@
-# React + Vite
+# Radial Menu Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **React-based Radial Menu** component that appears on right-click. This project demonstrates how to create a custom radial menu with pie slices, dynamic text placement, and hover effects.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Radial Menu on Right-Click**: Displays a radial menu at the cursor position when right-clicking.
+- **Customizable Pie Slices**: Each slice can have its own color, label, and click handler.
+- **Dynamic Text Placement**: Text labels follow the arc of each slice and are dynamically spaced.
+- **Hover Effects**: Slices pop out slightly on hover for better interactivity.
+- **Responsive Design**: Works on any screen size.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Installation
 
-## Expanding the ESLint configuration
+1. **Clone the repository**:
+   ```bash
+   git clone <your-repository-url>
+   cd radial-menu-project
+   Install dependencies:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. **Install dependencies**
+   ```bash
+   npm install
+
+3. **Run the project**
+   ```bash
+   npm run dev
+
+## Usage
+   ```js
+   import RadialMenu from './RadialMenu/RadialMenu';
+
+   import { useState } from 'react';
+   import RadialMenu from './RadialMenu/RadialMenu';
+   
+   function App() {
+     const [radialMenuVisibility, setRadialMenuVisibility] = useState    (false);
+     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+   
+     const handleContextMenu = (e) => {
+       e.preventDefault();
+       setMenuPosition({ x: e.clientX, y: e.clientY });
+       setRadialMenuVisibility(true);
+     };
+   
+     const handleCloseMenu = () => {
+       setRadialMenuVisibility(false);
+     };
+   
+     return (
+       <div
+         style={{ width: '100vw', height: '100vh' }}
+         onContextMenu={handleContextMenu}
+         onClick={handleCloseMenu}
+       >
+         {radialMenuVisibility && (
+           <div
+             style={{
+               position: 'absolute',
+               left: `${menuPosition.x}px`,
+               top: `${menuPosition.y}px`,
+               transform: 'translate(-50%, -50%)',
+             }}
+           >
+             <RadialMenu />
+           </div>
+         )}
+       </div>
+     );
+   }
+   
+   export default App;
+   
+## Customizing the Radial Menu
+
+Customizing Slices
+You can customize the slices in the RadialMenu component by passing an array of slice objects to the PieChart component. Each slice object can have the following properties:
+
+  
+    
+      Property
+      Type
+      Description
+    
+      degree
+      number
+      The angle (in degrees) for the slice.
+    
+      color
+      string
+      The fill color of the slice (e.g., "blue", "#FF5733").
+    
+      label
+      string
+      The text label for the slice.
+    
+      onClick
+      function
+      A callback function triggered when the slice is clicked.
+    
+      labelColor
+      string
+      The color of the label text (default: "black").
+    
+      labelRadius
+      number
+      The radius (as a percentage of the slice radius) for label placement (default: 80).
+    
+  
+
+
+
+
