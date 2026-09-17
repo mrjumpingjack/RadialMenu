@@ -18,7 +18,7 @@ A **React-based Radial Menu** component that appears on right-click. This projec
 
 1. **Clone the repository**:
    ```bash
-   git clone <your-repository-url>
+   git clone https://github.com/mrjumpingjack/RadialMenu
    cd radial-menu-project
    Install dependencies:
 
@@ -74,7 +74,8 @@ A **React-based Radial Menu** component that appears on right-click. This projec
    }
    
    export default App;
-   
+
+ ```
 ## Customizing the Radial Menu
 
 Customizing Slices
